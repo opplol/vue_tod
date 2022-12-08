@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  vue-todo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    environment:
+      - NODE_ENV=development
+      - HOST=0.0.0.0 # localhost接続をする際に必要
+      - CHOKIDAR_USEPOLLING=true # ホットリロードを可能にする
+    volumes:
+      - .:/vue_todo
+    command: sh -c "cd vue-tudo && npm run dev"
+    ports:
+      - "8080:8080"
